@@ -36,7 +36,7 @@ function LifeCoachView({
         parts: msg.parts,
       })),
     };
-    const apiKey = 'AIzaSyAmop3isHMrbTrL1OXv---6upR-Ru542e4'; // Dein Gemini API Schlüssel
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     // Überprüfung des API-Schlüssels
