@@ -3,9 +3,9 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, collection, writeBatch, getDocs, Timestamp } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
-import { Smile, MessageCircle, Dumbbell, RotateCcw, Target, Heart, Palette, ShieldCheck, Star, Map } from 'lucide-react';
+import { Smile, MessageCircle, Dumbbell, RotateCcw, Target, Heart, ShieldCheck, Star, Map } from 'lucide-react';
 
-// Importe aus unseren neuen aufgeräumten Dateien
+// Importe aus unseren aufgeräumten Dateien
 import { initialSampleExercises, LEVEL_THRESHOLDS, ACHIEVEMENTS_LIST } from './constants.jsx';
 import { generateId, getCurrentLevel, getNextLevelInfo } from './utils.js';
 import Modal from './components/Modal.jsx';
@@ -17,16 +17,16 @@ import GoalsView from './components/GoalsView.jsx';
 import ValuesLifeGoalsView from './components/ValuesLifeGoalsView.jsx';
 import AdventureView from './components/AdventureView.jsx';
 
-// Firebase Konfiguration aus sicheren Umgebungsvariablen
+// Firebase Konfiguration
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
-  };
+  apiKey: "AIzaSyDjLQLcaQiJHOq3rK27Fk8WHYq95bZjiRk",
+  authDomain: "selfdev-bf5d2.firebaseapp.com",
+  projectId: "selfdev-bf5d2",
+  storageBucket: "selfdev-bf5d2.firebasestorage.app",
+  messagingSenderId: "705951056387",
+  appId: "1:705951056387:web:1843d7163e476651404436",
+  measurementId: "G-SXN3MFQCCJ"
+};
 
 const appId = 'default-app-id';
 
@@ -232,7 +232,11 @@ function App() {
     return (
         <div className={`flex flex-col md:flex-row min-h-screen ${currentColors.bg} ${currentColors.darkAccent} font-sans`}>
             <nav className={`${currentColors.navBg} w-full md:w-72 p-4 space-y-1 shadow-lg md:shadow-none flex flex-col`}>
-                <div className="flex items-center space-x-2 mb-4"> <Palette size={32} className={currentColors.darkAccent} /> <h1 className={`text-2xl font-bold ${currentColors.darkAccent}`}>SelfDev</h1> </div>
+                <div className="flex items-center space-x-3 mb-4">
+                    <img src="/logo.jpg" alt="SelfDev App Logo" className="h-8 w-8" />
+                    <h1 className={`text-2xl font-bold ${currentColors.darkAccent}`}>SelfDev</h1> 
+                </div>
+
                 {navigationItems.map(item => ( <button key={item.id} onClick={() => setCurrentPage(item.id)} className={`w-full flex items-center space-x-3 p-2.5 rounded-lg transition-colors duration-200 ${currentPage === item.id ? `${currentColors.accent} ${currentColors.accentText}` : `${currentColors.navText} ${currentColors.navHoverBg}`}`}>{item.icon}<span>{item.label}</span></button>))}
                 <div className="mt-auto pt-3 space-y-2">
                     <div className={`p-2.5 rounded-lg ${currentColors.pointsPillBg} ${currentColors.pointsPillText} text-center shadow text-sm`}> <Star size={16} className="inline mr-1.5" /> {gamificationPoints} Punkte </div>
